@@ -1,0 +1,56 @@
+
+
+{% if data %}
+
+<h2>Mandatory </h2>
+<table>
+    <tr>
+        <th>Description</th>
+        <th>Platform</th>
+        <th>Machine type</th>
+        <th>Configuration</th>
+        <th>Results</th>
+    </tr>
+    {% for s in data %}
+    {% if s.mandatory == True %}
+    <tr>
+        <td>{{ s.description }}</td>
+        <td>{{ s.platform_name }}</td>
+        <td>{{ s.machine_type_name }}</td>
+        <td>{{ s.configuration_name }}</td>
+        {% for r in s.results_ %}
+            <td>{{ r.result }}</td>
+        {% endfor %}
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+
+
+<h2>Optional </h2>
+<table>
+    <tr>
+        <th>Description</th>
+        <th>Platform</th>
+        <th>Machine type</th>
+        <th>Configuration</th>
+        <th>Results</th>
+    </tr>
+    {% for s in data %}
+    {% if s.mandatory == False %}
+    <tr>
+        <td>{{ s.description }}</td>
+        <td>{{ s.platform_name }}</td>
+        <td>{{ s.machine_type_name }}</td>
+        <td>{{ s.configuration_name }}</td>
+        {% for r in s.results_ %}
+            <td>{{ r.result }}</td>
+        {% endfor %}
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+
+{% else %}
+    <p>No scenarios are available.</p>
+{% endif %}
